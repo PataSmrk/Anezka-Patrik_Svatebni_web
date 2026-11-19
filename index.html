@@ -12,16 +12,17 @@
                 extend: {
                     colors: {
                         darkBg: '#121312',
-                        darkCard: '#1a1c1b',
-                        darkBorder: '#272b28',
+                        darkCard: '#211D1C',
+                        darkBorder: '#40312F',
                         sage: {
-                            500: '#8ca38f',
-                            600: '#738678',
-                            700: '#5c6c60',
+                            400: '#D6B779',
+                            500: '#C98F91',
+                            600: '#A97878',
+                            700: '#4B342F',
                         },
                         sand: {
-                            100: '#f3eee3',
-                            200: '#e5dcce',
+                            100: '#E8C9C8',
+                            200: '#B9A18B',
                         }
                     },
                     fontFamily: {
@@ -45,6 +46,20 @@
         h1, h2, h3, .font-serif {
             font-family: 'Playfair Display', serif;
         }
+
+        /* Barevná paleta: Pale Pink, Dusty Rose, Truffle Blush, Champagne Gold, Espresso Brown, Dune */
+        :root {
+            --pale-pink: #E8C9C8;
+            --dusty-rose: #C98F91;
+            --truffle-blush: #A97878;
+            --champagne-gold: #D6B779;
+            --espresso-brown: #4B342F;
+            --dune: #B9A18B;
+        }
+        body { background-color: #121312; }
+        .bg-darkCard { background-color: #211D1C; }
+        .border-darkBorder { border-color: #40312F; }
+        .bg-\[\#161817\] { background-color: #181615; }
     </style>
 </head>
 <body class="bg-darkBg text-gray-300 antialiased selection:bg-sage-600 selection:text-white">
@@ -58,7 +73,7 @@
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 right-0 bg-[#121312]/90 backdrop-blur-md z-40 border-b border-darkBorder transition-all duration-300" id="navbar">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="#" class="font-serif text-2xl tracking-wider text-[#daa520] font-semibold">A & P</a>
+            <a href="#" class="font-serif text-2xl tracking-wider text-[#C98F91] font-semibold">A & P</a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase text-gray-400">
@@ -68,7 +83,7 @@
                 <a href="#gallery" class="hover:text-sage-400 transition-colors">Fotogalerie</a>
                 <a href="#dresscode" class="hover:text-sage-400 transition-colors">Dresscode</a>
                 <a href="#gifts" class="hover:text-sage-400 transition-colors">Dary</a>
-                <a href="#rsvp" class="bg-[#daa520] hover:bg-[#ffd700] text-white px-5 py-2.5 rounded-full transition-all text-xs tracking-wider">Potvrdit účast</a>
+                <a href="#rsvp" class="bg-[#C98F91] hover:bg-[#D6B779] text-white px-5 py-2.5 rounded-full transition-all text-xs tracking-wider">Potvrdit účast</a>
             </div>
 
             <!-- Mobile Menu Button -->
@@ -94,9 +109,9 @@
         <div class="absolute inset-0 z-0 opacity-5 bg-[radial-gradient(#8ca38f_1px,transparent_1px)] [background-size:24px_24px]"></div>
 
         <div class="relative z-10 max-w-3xl mx-auto my-auto">
-            <span class="text-xs md:text-sm uppercase tracking-[0.25em] font-semibold mb-4 block text-[#daa520]">Zveme vás na naší svatbu</span>
+            <span class="text-xs md:text-sm uppercase tracking-[0.25em] font-semibold mb-4 block text-[#C98F91]">Zveme vás na naší svatbu</span>
             <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-sand-100 tracking-tight mb-6">
-                Anežka <span class="text-[#daa520] font-light italic">&</span> Patrik
+                Anežka <span class="text-[#C98F91] font-light italic">&</span> Patrik
             </h1>
             <div class="text-sm md:text-base text-gray-400 mb-10 tracking-widest uppercase">
                 <span>Hostinec pod Zelenou Křivinou</span>
@@ -137,7 +152,7 @@
     <section id="story" class="py-24 px-6 bg-[#161817]">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16">
-                <span class="text-xs uppercase tracking-[0.2em] text-[#daa520] font-semibold mb-2 block">Jak to všechno začalo</span>
+                <span class="text-xs uppercase tracking-[0.2em] text-[#C98F91] font-semibold mb-2 block">Jak to všechno začalo</span>
                 <h2 class="font-serif text-4xl md:text-5xl text-gray-300">Náš příběh</h2>
             </div>
 
@@ -273,7 +288,7 @@
                     class="block w-full rounded-2xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-sage-500"
                     aria-label="Zvětšit obrázek barevné palety">
                     <img
-                        src="https://github.com/PataSmrk/Anezka-Patrik_Svatebni_web/blob/main/dresscode.jpg?raw=true"
+                        src="dresscode.jpg"
                         alt="Barevná paleta svatebního dresscodu"
                         class="w-full h-auto rounded-2xl hover:opacity-90 transition-opacity duration-300 cursor-zoom-in">
                 </button>
@@ -298,7 +313,7 @@
         role="dialog" aria-modal="true" aria-label="Zvětšený obrázek dresscodu">
 
         <button type="button" id="dresscode-close"
-            class="absolute top-5 right-6 text-white text-4xl hover:text-[#daa520] transition-colors z-10"
+            class="absolute top-5 right-6 text-white text-4xl hover:text-[#C98F91] transition-colors z-10"
             aria-label="Zavřít obrázek">
             &times;
         </button>
