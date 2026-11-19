@@ -59,13 +59,14 @@
     <nav class="fixed top-0 left-0 right-0 bg-[#121312]/90 backdrop-blur-md z-40 border-b border-darkBorder transition-all duration-300" id="navbar">
         <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <a href="#" class="font-serif text-2xl tracking-wider text-[#daa520] font-semibold">A & P</a>
-            
+
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase text-gray-400">
                 <a href="#story" class="hover:text-sage-400 transition-colors">Příběh</a>
                 <a href="#schedule" class="hover:text-sage-400 transition-colors">Harmonogram</a>
                 <a href="#venue" class="hover:text-sage-400 transition-colors">Místo</a>
                 <a href="#gallery" class="hover:text-sage-400 transition-colors">Fotogalerie</a>
+                <a href="#dresscode" class="hover:text-sage-400 transition-colors">Dresscode</a>
                 <a href="#gifts" class="hover:text-sage-400 transition-colors">Dary</a>
                 <a href="#rsvp" class="bg-[#daa520] hover:bg-[#ffd700] text-white px-5 py-2.5 rounded-full transition-all text-xs tracking-wider">Potvrdit účast</a>
             </div>
@@ -82,6 +83,7 @@
             <a href="#schedule" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Harmonogram</a>
             <a href="#venue" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Místo</a>
             <a href="#gallery" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Fotogalerie</a>
+            <a href="#dresscode" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Dresscode</a>
             <a href="#gifts" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Dary</a>
             <a href="#rsvp" class="block text-sm font-medium uppercase text-sage-400 font-semibold py-1 mobile-link">Potvrdit účast</a>
         </div>
@@ -90,7 +92,7 @@
     <!-- Hero Section -->
     <header class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 px-6 overflow-hidden bg-darkBg text-center">
         <div class="absolute inset-0 z-0 opacity-5 bg-[radial-gradient(#8ca38f_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        
+
         <div class="relative z-10 max-w-3xl mx-auto my-auto">
             <span class="text-xs md:text-sm uppercase tracking-[0.25em] font-semibold mb-4 block text-[#daa520]">Zveme vás na naší svatbu</span>
             <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-sand-100 tracking-tight mb-6">
@@ -246,6 +248,68 @@
         </div>
     </section>
 
+    <!-- Dresscode Section -->
+    <section id="dresscode" class="py-24 px-6 bg-darkBg">
+        <div class="max-w-4xl mx-auto">
+
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Barvy našeho dne</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sand-100 mb-6">Svatební dresscode</h2>
+                <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto">
+                    Budeme rádi, když s námi sladíte atmosféru našeho dne.
+                    Připravili jsme pro vás barevnou paletu, kterou můžete
+                    při výběru svého svatebního outfitu využít.
+                </p>
+            </div>
+
+            <div class="bg-darkCard rounded-3xl p-4 md:p-6 border border-darkBorder shadow-xl">
+                <!--
+                    SEM VLOŽ SVŮJ OBRÁZEK:
+                    Nahraj obrázek do stejné složky jako index.html na GitHubu
+                    a pojmenuj ho dresscode.jpg.
+                    Pokud zvolíš jiný název, změň ho v obou src níže.
+                -->
+                <button type="button" id="dresscode-image-btn"
+                    class="block w-full rounded-2xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-sage-500"
+                    aria-label="Zvětšit obrázek barevné palety">
+                    <img
+                        src="dresscode.jpg"
+                        alt="Barevná paleta svatebního dresscodu"
+                        class="w-full h-auto rounded-2xl hover:opacity-90 transition-opacity duration-300 cursor-zoom-in">
+                </button>
+
+                <div class="text-center mt-5">
+                    <p class="text-xs text-gray-500 font-light">
+                        <i class="fa-solid fa-magnifying-glass-plus text-sage-500 mr-2"></i>
+                        Kliknutím na obrázek zobrazíte barevnou paletu ve větší velikosti.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-500 text-xs font-light mt-8">
+                Děkujeme, že nám pomůžete vytvořit krásně sladěnou atmosféru našeho dne.
+            </p>
+        </div>
+    </section>
+
+    <!-- Dresscode Image Lightbox -->
+    <div id="dresscode-lightbox"
+        class="hidden fixed inset-0 z-[100] bg-black/95 items-center justify-center p-4"
+        role="dialog" aria-modal="true" aria-label="Zvětšený obrázek dresscodu">
+
+        <button type="button" id="dresscode-close"
+            class="absolute top-5 right-6 text-white text-4xl hover:text-[#daa520] transition-colors z-10"
+            aria-label="Zavřít obrázek">
+            &times;
+        </button>
+
+        <img
+            src="dresscode.jpg"
+            alt="Barevná paleta svatebního dresscodu"
+            class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
+            id="dresscode-large-image">
+    </div>
+
     <!-- Padlet Gallery Section -->
     <section id="gallery" class="py-24 px-6 bg-darkBg">
         <div class="max-w-6xl mx-auto">
@@ -260,8 +324,13 @@
             <div class="bg-darkCard rounded-3xl p-4 md:p-8 border border-darkBorder shadow-xl">
                 <!-- Padlet Embed Container -->
                 <div class="relative w-full h-[600px] rounded-2xl overflow-hidden border border-darkBorder bg-darkBg">
-               <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4"><p style="padding:0;margin:0"><iframe src="https://padlet.com/embed/s025l30yim7gc8202nj6" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe></p></div>
+                    <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+                        <p style="padding:0;margin:0">
+                            <iframe src="https://padlet.com/embed/s025l30yim7gc8202nj6" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe>
+                        </p>
+                    </div>
                 </div>
+
                 <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
                     <p class="text-xs text-gray-400 font-light">
                         <i class="fa-solid fa-circle-info text-sage-500 mr-1.5"></i>
@@ -277,7 +346,7 @@
         <div class="max-w-3xl mx-auto text-center">
             <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Naše přání</span>
             <h2 class="font-serif text-4xl md:text-5xl text-sand-100 mb-6">Svatební dary</h2>
-            
+
             <div class="bg-darkCard rounded-3xl p-8 md:p-12 shadow-sm border border-darkBorder space-y-6">
                 <div class="w-16 h-16 bg-[#272b28] text-sage-400 rounded-full flex items-center justify-center mx-auto text-2xl">
                     <i class="fa-solid fa-gift"></i>
@@ -285,7 +354,6 @@
                 <p class="text-gray-400 font-light leading-relaxed max-w-xl mx-auto">
                     Vaše přítomnost na naší svatbě je pro nás tím největším darem. Pokud byste nás však chtěli potěšit nějakým příspěvkem, největší radost nám udělá jakýkoli finanční příspěvek na naše společné budoucí sny.
                 </p>
-               
             </div>
         </div>
     </section>
@@ -377,9 +445,9 @@
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toast-message');
             const toastIcon = document.getElementById('toast-icon');
-            
+
             toastMsg.textContent = message;
-            
+
             if (isError) {
                 toast.classList.remove('bg-sage-700', 'border-sage-600');
                 toast.classList.add('bg-red-800', 'border-red-600');
@@ -402,7 +470,7 @@
 
         rsvpForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const formData = new FormData(rsvpForm);
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
@@ -464,6 +532,37 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        // Dresscode Image Lightbox
+        const dresscodeImageBtn = document.getElementById('dresscode-image-btn');
+        const dresscodeLightbox = document.getElementById('dresscode-lightbox');
+        const dresscodeClose = document.getElementById('dresscode-close');
+
+        dresscodeImageBtn.addEventListener('click', () => {
+            dresscodeLightbox.classList.remove('hidden');
+            dresscodeLightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeDresscodeLightbox() {
+            dresscodeLightbox.classList.add('hidden');
+            dresscodeLightbox.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        dresscodeClose.addEventListener('click', closeDresscodeLightbox);
+
+        dresscodeLightbox.addEventListener('click', (e) => {
+            if (e.target === dresscodeLightbox) {
+                closeDresscodeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !dresscodeLightbox.classList.contains('hidden')) {
+                closeDresscodeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
