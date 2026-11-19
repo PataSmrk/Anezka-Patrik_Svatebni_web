@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="cs" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anežka & Patrik | Naše svatba</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#121312',
+                        darkCard: '#1a1c1b',
+                        darkBorder: '#272b28',
+                        sage: {
+                            500: '#8ca38f',
+                            600: '#738678',
+                            700: '#5c6c60',
+                        },
+                        sand: {
+                            100: '#f3eee3',
+                            200: '#e5dcce',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121312;
+            color: #d1d5db;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-300 antialiased selection:bg-sage-600 selection:text-white">
+
+    <!-- Notification Message Box (Custom alert alternative) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-28 opacity-0 transition-all duration-300 bg-sage-700 text-white px-6 py-3 rounded-xl shadow-xl flex items-center space-x-3 border border-sage-600">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toast-message">Akce proběhla úspěšně!</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 bg-[#121312]/90 backdrop-blur-md z-40 border-b border-darkBorder transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="font-serif text-2xl tracking-wider text-[#daa520] font-semibold">A & P</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide uppercase text-gray-400">
+                <a href="#story" class="hover:text-sage-400 transition-colors">Příběh</a>
+                <a href="#schedule" class="hover:text-sage-400 transition-colors">Harmonogram</a>
+                <a href="#venue" class="hover:text-sage-400 transition-colors">Místo</a>
+                <a href="#gallery" class="hover:text-sage-400 transition-colors">Fotogalerie</a>
+                <a href="#dresscode" class="hover:text-sage-400 transition-colors">Dresscode</a>
+                <a href="#gifts" class="hover:text-sage-400 transition-colors">Dary</a>
+                <a href="#rsvp" class="bg-[#daa520] hover:bg-[#ffd700] text-white px-5 py-2.5 rounded-full transition-all text-xs tracking-wider">Potvrdit účast</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-300 focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-darkCard border-b border-darkBorder px-6 py-4 space-y-3">
+            <a href="#story" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Příběh</a>
+            <a href="#schedule" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Harmonogram</a>
+            <a href="#venue" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Místo</a>
+            <a href="#gallery" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Fotogalerie</a>
+            <a href="#dresscode" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Dresscode</a>
+            <a href="#gifts" class="block text-sm font-medium uppercase text-gray-300 py-1 mobile-link">Dary</a>
+            <a href="#rsvp" class="block text-sm font-medium uppercase text-sage-400 font-semibold py-1 mobile-link">Potvrdit účast</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 px-6 overflow-hidden bg-darkBg text-center">
+        <div class="absolute inset-0 z-0 opacity-5 bg-[radial-gradient(#8ca38f_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto my-auto">
+            <span class="text-xs md:text-sm uppercase tracking-[0.25em] font-semibold mb-4 block text-[#daa520]">Zveme vás na naší svatbu</span>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-sand-100 tracking-tight mb-6">
+                Anežka <span class="text-[#daa520] font-light italic">&</span> Patrik
+            </h1>
+            <div class="text-sm md:text-base text-gray-400 mb-10 tracking-widest uppercase">
+                <span>Hostinec pod Zelenou Křivinou</span>
+                <span class="mx-2 text-sage-500">•</span>
+                <span>19. června 2027</span>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="grid grid-cols-4 gap-3 max-w-md mx-auto mb-10">
+                <div class="bg-darkCard border border-darkBorder rounded-2xl p-4 shadow-sm">
+                    <span id="days" class="block font-serif text-2xl md:text-3xl text-sand-100 font-bold">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Dní</span>
+                </div>
+                <div class="bg-darkCard border border-darkBorder rounded-2xl p-4 shadow-sm">
+                    <span id="hours" class="block font-serif text-2xl md:text-3xl text-sand-100 font-bold">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Hodin</span>
+                </div>
+                <div class="bg-darkCard border border-darkBorder rounded-2xl p-4 shadow-sm">
+                    <span id="minutes" class="block font-serif text-2xl md:text-3xl text-sand-100 font-bold">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Minut</span>
+                </div>
+                <div class="bg-darkCard border border-darkBorder rounded-2xl p-4 shadow-sm">
+                    <span id="seconds" class="block font-serif text-2xl md:text-3xl text-sand-100 font-bold">00</span>
+                    <span class="text-[10px] md:text-xs uppercase tracking-wider text-gray-500">Vteřin</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Image Section -->
+        <div class="relative z-10 w-full max-w-4xl mx-auto px-4 mt-4">
+            <div class="rounded-3xl overflow-hidden border border-darkBorder shadow-2xl h-[350px] md:h-[450px]">
+                <img src="https://github.com/PataSmrk/Anezka-Patrik_Svatebni_web/blob/main/12569.jpg?raw=true" alt="Anežka a Patrik" class="w-full h-full object-cover scale-110 object-[50%_55%] opacity-90 hover:scale-105 transition-transform duration-700">
+            </div>
+        </div>
+    </header>
+
+    <!-- Our Story Section -->
+    <section id="story" class="py-24 px-6 bg-[#161817]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-[0.2em] text-[#daa520] font-semibold mb-2 block">Jak to všechno začalo</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-gray-300">Náš příběh</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-2 bg-darkBorder rounded-3xl transform -rotate-1"></div>
+                    <img src="https://github.com/PataSmrk/Anezka-Patrik_Svatebni_web/blob/main/GP010196_1770189215846.JPG?raw=true" alt="Náš příběh" class="relative rounded-2xl w-full object-cover object-[50%_60%] shadow-md h-[400px]">
+                </div>
+                <div class="space-y-6 text-gray-400 leading-relaxed font-light">
+                    <p class="first-letter:text-5xl first-letter:font-serif first-letter:text-sage-500 first-letter:mr-3 first-letter:float-left">
+                        Náš příběh začal díky společným kamarádům. Nejdřív to bylo jen pár náhodných setkání, společné akce a nenápadné rozhovory. Postupem času jsme spolu začali trávit více času, poznávali se a zjišťovali, že je nám spolu opravdu dobře. Z přátelství se stala láska a nakonec jsme vytvořili pár, který dnes společně kráčí životem už téměř 9 let.
+                    </p>
+                    <p>
+                        Po letech společného bydlení a procestovaných koutech světa přišla žádost o ruku mezi vlnami Indického oceánu na ostrově Dhigurah. 
+                    </p>
+                    <p>
+                        Teď nastal čas stvrdit naše pouto obřadem pod širým nebem obklopeni těmi nejbližšími přáteli a rodinou.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-24 px-6 bg-darkBg">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Průběh svatebního dne</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sand-100">Harmonogram</h2>
+            </div>
+
+            <div class="relative border-l-2 border-darkBorder ml-4 md:ml-32 space-y-12">
+                <!-- Item 1 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sage-500 border-4 border-darkBg"></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-400 bg-darkCard px-3 py-1 rounded-full border border-darkBorder">12:00</span>
+                    <h3 class="font-serif text-2xl text-sand-100 mt-2">Příjezd hostů</h3>
+                    <p class="text-gray-400 text-sm mt-1 font-light">Uvítání v Hostinci pod Zelenou Křivinou a malý osvěžující drink.</p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sage-500 border-4 border-darkBg"></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-400 bg-darkCard px-3 py-1 rounded-full border border-darkBorder">14:00</span>
+                    <h3 class="font-serif text-2xl text-sand-100 mt-2">Svatební obřad</h3>
+                    <p class="text-gray-400 text-sm mt-1 font-light">Slib věrnosti na louce pod širým nebem.</p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sage-500 border-4 border-darkBg"></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-400 bg-darkCard px-3 py-1 rounded-full border border-darkBorder">15:30</span>
+                    <h3 class="font-serif text-2xl text-sand-100 mt-2">Hostina a oslava</h3>
+                    <p class="text-gray-400 text-sm mt-1 font-light">Společný oběd, krájení dortu a pohodová atmosféra.</p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-sage-500 border-4 border-darkBg"></div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-400 bg-darkCard px-3 py-1 rounded-full border border-darkBorder">19:00</span>
+                    <h3 class="font-serif text-2xl text-sand-100 mt-2">Večerní zábava</h3>
+                    <p class="text-gray-400 text-sm mt-1 font-light">Hudba, tanec a neformální grilování pod lucernami.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="py-24 px-6 bg-[#161817]">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Kde se uvidíme</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sand-100">Místo konání</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 bg-darkCard rounded-3xl p-8 md:p-12 border border-darkBorder">
+                <div class="flex flex-col justify-center space-y-6">
+                    <div>
+                        <h3 class="font-serif text-3xl text-sand-100 mb-2">Hostinec pod Zelenou Křivinou</h3>
+                        <p class="text-gray-400 font-light leading-relaxed">
+                            Romantické místo uprostřed přírody s útulným hostincem.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-location-dot text-sage-500 mt-1"></i>
+                            <span>Týniště nad Orlicí 30431, 517 21 Týniště nad Orlicí</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fa-solid fa-car text-sage-500 mt-1"></i>
+                            <span>Parkování je zajištěno přímo u areálu.</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="https://www.google.com/maps/place/Hostinec+Pod+Zelenou+K%C5%99ivinou/@50.1791393,16.1119221,262m/data=!3m1!1e3!4m14!1m7!3m6!1s0x470dd9acc52a1fe7:0x43976c5f596b96cf!2sHostinec+Pod+Zelenou+K%C5%99ivinou!8m2!3d50.1794238!4d16.1114987!16s%2Fg%2F11kn7249rs!3m5!1s0x470dd9acc52a1fe7:0x43976c5f596b96cf!8m2!3d50.1794238!4d16.1114987!16s%2Fg%2F11kn7249rs?entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex items-center space-x-2 text-xs font-semibold tracking-wider uppercase bg-sage-600 hover:bg-sage-500 text-white px-6 py-3 rounded-full transition-all shadow-md">
+                            <span>Otevřít mapu</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl overflow-hidden shadow-inner bg-darkBg min-h-[300px] flex items-center justify-center relative border border-darkBorder">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1141.2589039902255!2d16.11192206895087!3d50.17913931833661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470dd9acc52a1fe7%3A0x43976c5f596b96cf!2sHostinec%20Pod%20Zelenou%20K%C5%99ivinou!5e1!3m2!1scs!2scz!4v1795023199908!5m2!1scs!2scz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dresscode Section -->
+    <section id="dresscode" class="py-24 px-6 bg-darkBg">
+        <div class="max-w-4xl mx-auto">
+
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Barvy našeho dne</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sand-100 mb-6">Svatební dresscode</h2>
+                <p class="text-gray-400 text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto">
+                    Budeme rádi, když s námi sladíte atmosféru našeho dne.
+                    Připravili jsme pro vás barevnou paletu, kterou můžete
+                    při výběru svého svatebního outfitu využít.
+                </p>
+            </div>
+
+            <div class="bg-darkCard rounded-3xl p-4 md:p-6 border border-darkBorder shadow-xl">
+                <!--
+                    SEM VLOŽ SVŮJ OBRÁZEK:
+                    Nahraj obrázek do stejné složky jako index.html na GitHubu
+                    a pojmenuj ho dresscode.jpg.
+                    Pokud zvolíš jiný název, změň ho v obou src níže.
+                -->
+                <button type="button" id="dresscode-image-btn"
+                    class="block w-full rounded-2xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-sage-500"
+                    aria-label="Zvětšit obrázek barevné palety">
+                    <img
+                        src="dresscode.jpg"
+                        alt="Barevná paleta svatebního dresscodu"
+                        class="w-full h-auto rounded-2xl hover:opacity-90 transition-opacity duration-300 cursor-zoom-in">
+                </button>
+
+                <div class="text-center mt-5">
+                    <p class="text-xs text-gray-500 font-light">
+                        <i class="fa-solid fa-magnifying-glass-plus text-sage-500 mr-2"></i>
+                        Kliknutím na obrázek zobrazíte barevnou paletu ve větší velikosti.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-500 text-xs font-light mt-8">
+                Děkujeme, že nám pomůžete vytvořit krásně sladěnou atmosféru našeho dne.
+            </p>
+        </div>
+    </section>
+
+    <!-- Dresscode Image Lightbox -->
+    <div id="dresscode-lightbox"
+        class="hidden fixed inset-0 z-[100] bg-black/95 items-center justify-center p-4"
+        role="dialog" aria-modal="true" aria-label="Zvětšený obrázek dresscodu">
+
+        <button type="button" id="dresscode-close"
+            class="absolute top-5 right-6 text-white text-4xl hover:text-[#daa520] transition-colors z-10"
+            aria-label="Zavřít obrázek">
+            &times;
+        </button>
+
+        <img
+            src="dresscode.jpg"
+            alt="Barevná paleta svatebního dresscodu"
+            class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
+            id="dresscode-large-image">
+    </div>
+
+    <!-- Padlet Gallery Section -->
+    <section id="gallery" class="py-24 px-6 bg-darkBg">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Sdílejte s námi vzpomínky</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sand-100 mb-4">Fotogalerie</h2>
+                <p class="text-gray-400 text-sm font-light max-w-xl mx-auto">
+                    Máte z naší svatby fotky? Nahrajte je do naší společné nástěnky na Padletu, ať máme všechny momentky pohromadě!
+                </p>
+            </div>
+
+            <div class="bg-darkCard rounded-3xl p-4 md:p-8 border border-darkBorder shadow-xl">
+                <!-- Padlet Embed Container -->
+                <div class="relative w-full h-[600px] rounded-2xl overflow-hidden border border-darkBorder bg-darkBg">
+                    <div class="padlet-embed" style="border:1px solid rgba(0,0,0,0.1);border-radius:2px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+                        <p style="padding:0;margin:0">
+                            <iframe src="https://padlet.com/embed/s025l30yim7gc8202nj6" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0"></iframe>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+                    <p class="text-xs text-gray-400 font-light">
+                        <i class="fa-solid fa-circle-info text-sage-500 mr-1.5"></i>
+                        Fotky můžete jednoduše nahrát i přes mobilní telefon kliknutím na tlačítko "Zveřejnit".
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gifts Section -->
+    <section id="gifts" class="py-24 px-6 bg-[#161817]">
+        <div class="max-w-3xl mx-auto text-center">
+            <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Naše přání</span>
+            <h2 class="font-serif text-4xl md:text-5xl text-sand-100 mb-6">Svatební dary</h2>
+
+            <div class="bg-darkCard rounded-3xl p-8 md:p-12 shadow-sm border border-darkBorder space-y-6">
+                <div class="w-16 h-16 bg-[#272b28] text-sage-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+                <p class="text-gray-400 font-light leading-relaxed max-w-xl mx-auto">
+                    Vaše přítomnost na naší svatbě je pro nás tím největším darem. Pokud byste nás však chtěli potěšit nějakým příspěvkem, největší radost nám udělá jakýkoli finanční příspěvek na naše společné budoucí sny.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Form Section -->
+    <section id="rsvp" class="py-24 px-6 bg-[#161817]">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-500 font-semibold mb-2 block">Dejte nám vědět</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-sand-100 mb-4">Potvrzení účasti (RSVP)</h2>
+                <p class="text-gray-400 text-sm font-light">Prosíme o potvrzení účasti nejpozději do <strong class="font-semibold text-sand-100">1. května 2027</strong>.</p>
+            </div>
+
+            <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST" class="bg-darkCard rounded-3xl p-8 md:p-12 border border-darkBorder space-y-6 shadow-sm">
+                <!-- Web3Forms konfigurace -->
+                <input type="hidden" name="access_key" value="84e617f5-86f4-47c4-954d-f8fe80a1edaf">
+                <input type="hidden" name="subject" value="Nové potvrzení účasti na svatbě (Anežka & Patrik)">
+                <input type="hidden" name="from_name" value="Svatební web">
+                <!-- Honeypot ochrana proti spamu -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Celé jméno</label>
+                        <input type="text" name="Jmeno" required class="w-full bg-darkBg border border-darkBorder rounded-xl px-4 py-3 text-sm text-sand-100 focus:outline-none focus:border-sage-500 transition-colors" placeholder="Jan Novák">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">E-mailová adresa</label>
+                        <input type="email" name="Email" required class="w-full bg-darkBg border border-darkBorder rounded-xl px-4 py-3 text-sm text-sand-100 focus:outline-none focus:border-sage-500 transition-colors" placeholder="jan@novak.cz">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Účast na svatbě</label>
+                    <select name="Ucast" class="w-full bg-darkBg border border-darkBorder rounded-xl px-4 py-3 text-sm text-sand-100 focus:outline-none focus:border-sage-500 transition-colors">
+                        <option value="Ano, s radostí dorazím" class="bg-darkBg text-sand-100">Ano, s radostí dorazím</option>
+                        <option value="Bohužel se nemůžu zúčastnit" class="bg-darkBg text-sand-100">Bohužel se nemůžu zúčastnit</option>
+                    </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Počet osob</label>
+                        <input type="number" name="Pocet_osob" min="1" max="5" value="1" class="w-full bg-darkBg border border-darkBorder rounded-xl px-4 py-3 text-sm text-sand-100 focus:outline-none focus:border-sage-500 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Dietní omezení / Poznámka</label>
+                        <input type="text" name="Poznamka" class="w-full bg-darkBg border border-darkBorder rounded-xl px-4 py-3 text-sm text-sand-100 focus:outline-none focus:border-sage-500 transition-colors" placeholder="Např. bezlepková dieta...">
+                    </div>
+                </div>
+
+                <div class="pt-4 text-center">
+                    <button type="submit" id="submit-btn" class="w-full md:w-auto bg-sage-600 hover:bg-sage-500 text-white font-medium px-10 py-4 rounded-full transition-all shadow-lg shadow-sage-600/20 uppercase tracking-wider text-xs disabled:opacity-50">
+                        Odeslat odpověď
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkCard py-12 px-6 border-t border-darkBorder text-center">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <h2 class="font-serif text-2xl text-sand-100 font-bold">Anežka & Patrik</h2>
+            <p class="text-xs uppercase tracking-widest text-gray-500">Těšíme se na vás v Křivicích!</p>
+            <p class="text-[11px] text-gray-600 pt-4">&copy; 2027 Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Toast Message Notification helper
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+
+            if (isError) {
+                toast.classList.remove('bg-sage-700', 'border-sage-600');
+                toast.classList.add('bg-red-800', 'border-red-600');
+                toastIcon.className = 'fa-solid fa-circle-exclamation text-lg';
+            } else {
+                toast.classList.remove('bg-red-800', 'border-red-600');
+                toast.classList.add('bg-sage-700', 'border-sage-600');
+                toastIcon.className = 'fa-solid fa-circle-check text-lg';
+            }
+
+            toast.classList.remove('translate-y-28', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-28', 'opacity-0');
+            }, 5000);
+        }
+
+        // RSVP Form Handler (Web3Forms)
+        const rsvpForm = document.getElementById('rsvp-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        rsvpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(rsvpForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Odesílám...';
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    showToast('Děkujeme! Vaše odpověď byla úspěšně odeslána.');
+                    rsvpForm.reset();
+                } else {
+                    showToast(result.message || 'Něco se pokazilo, zkuste to prosím znovu.', true);
+                }
+            } catch (error) {
+                showToast('Chyba připojení. Zkontrolujte prosím internet a zkuste to znovu.', true);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Odeslat odpověď';
+            }
+        });
+
+        // Countdown Timer Logic
+        const weddingDate = new Date('June 19, 2027 12:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Dresscode Image Lightbox
+        const dresscodeImageBtn = document.getElementById('dresscode-image-btn');
+        const dresscodeLightbox = document.getElementById('dresscode-lightbox');
+        const dresscodeClose = document.getElementById('dresscode-close');
+
+        dresscodeImageBtn.addEventListener('click', () => {
+            dresscodeLightbox.classList.remove('hidden');
+            dresscodeLightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeDresscodeLightbox() {
+            dresscodeLightbox.classList.add('hidden');
+            dresscodeLightbox.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        dresscodeClose.addEventListener('click', closeDresscodeLightbox);
+
+        dresscodeLightbox.addEventListener('click', (e) => {
+            if (e.target === dresscodeLightbox) {
+                closeDresscodeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !dresscodeLightbox.classList.contains('hidden')) {
+                closeDresscodeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
